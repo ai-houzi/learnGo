@@ -6,17 +6,17 @@ import "fmt"
 //寻找最长不含有重复字符的子串
 func main() {
 	fmt.Println(
-		lengthOfNoRepetingSubStr("abcd"))
+		LengthOfNoRepetingSubStr("abcd"))
 	fmt.Println(
-		lengthOfNoRepetingSubStr("abcdasdqwe"))
+		LengthOfNoRepetingSubStr("abcdasdqwe"))
 	fmt.Println(
-		lengthOfNoRepetingSubStr("这是我的测试"))
+		LengthOfNoRepetingSubStr("这是我的测试"))
 	fmt.Println(
-		lengthOfNoRepetingSubStr("一二三三二一"))
+		LengthOfNoRepetingSubStr("一二三三二一"))
 
 }
 
-func lengthOfNoRepetingSubStr(s string) int {
+func LengthOfNoRepetingSubStr(s string) int {
 	lastOfOccurred := make(map[rune]int)
 	start := 0
 	maxLength := 0
