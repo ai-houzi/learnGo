@@ -2,8 +2,9 @@ package main
 
 import (
 	"net/http"
-	"myProject/learnGo/errhandler/filelisting"
+	"learnGo/errhandler/filelisting"
 	"os"
+	_ "net/http/pprof"
 	"log"
 )
 
@@ -13,12 +14,16 @@ func errorWrapper(handler appHandler) func(http.ResponseWriter, *http.Request) {
 
 	return func(writer http.ResponseWriter, request *http.Request) {
 		err := handler(writer, request)
-		log.Printf("error occureed handing request :%s",err.Error())
+
+		if err != nil {
+			log.Printf("error occureed handing request :%s", err.Error())
+		}
+
 		code := http.StatusOK
 		if err != nil {
 			switch {
 			case os.IsNotExist(err):
-				code = http.StatusNotFound  //文件未找到
+				code = http.StatusNotFound //文件未找到
 			case os.IsPermission(err):
 				code = http.StatusForbidden
 			default:

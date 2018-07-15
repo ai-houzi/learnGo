@@ -23,8 +23,13 @@ func TestSubString(t *testing.T) {
 }
 
 func BenchmarkLengthOfNoRepetingSubStr(b *testing.B) {
-	s, ans := "这是我的测试", 6
+	s, ans := "黑化肥挥发发灰会花飞灰化肥挥发发黑会飞花", 8
+	for i := 0; i < 13; i++ {
+		s = s + s
+	}
+	b.Logf("字符串长度为：%d",len(s))
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		str := LengthOfNoRepetingSubStr(s)
 		if str != ans {
